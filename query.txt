@@ -1,0 +1,28 @@
+SELECT * from tbl_users u
+JOIN
+tbl_userdisease ud
+JOIN
+tbl_disease d
+ON
+ ud.userDisease_disease_id = d.disease_id
+JOIN
+tbl_days day
+JOIN
+tbl_mealplan m
+ON
+d.disease_id = m.disease_id
+WHERE m.day_id = 1
+AND day.day_id = 1
+AND u.user_id = 2
+AND ud.userDisease_user_id = 2
+
+
+SELECT @serial:= @serial+1,u.u_username,d.disease_name,m.m_menuItem FROM tbl_users u
+JOIN
+tbl_disease d
+ON
+u.u_disease = d.disease_id
+JOIN
+tbl_mealplan m
+ON
+m.d_id = 1
