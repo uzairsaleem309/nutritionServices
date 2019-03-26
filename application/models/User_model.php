@@ -8,7 +8,7 @@ class User_model extends CI_Model {
 	//function used for user's login
 	public function userlogin()
 	{
-		$this->db->select('u.user_username,u.user_password,u.user_age');
+		$this->db->select('*');
 		$this->db->from('tbl_users as u');
 		$this->db->where('user_username', $this->input->post('user_username'));
 		$this->db->where('user_password', $this->input->post('user_password'));

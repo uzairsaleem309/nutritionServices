@@ -88,10 +88,10 @@ class Api extends REST_Controller {
 	{
 		$diseases = $this->post('userDisease_disease_id');
 		$i = 0;
-		if(count($diseases) > 1)
-		{
-			//if a user has more than one disease then from the post request we are sending an array of ud_disease_id
-			//then looping over it to add the records
+		// if(count($diseases) > 1)
+		// {
+		// 	//if a user has more than one disease then from the post request we are sending an array of ud_disease_id
+		// 	//then looping over it to add the records
 			foreach ($diseases as $row) {
 				$data = array(
 				'userDisease_user_id' => $this->post('userDisease_user_id'),
@@ -112,22 +112,22 @@ class Api extends REST_Controller {
 				echo json_encode(['status' => TRUE, 'message' => 'User disease could not be added. Please try again'], 404);
 			}
 		}
-		//and if a user has only one disease then simply insert the data
-		else
-		{
-			$data = array(
-				'userDisease_user_id' => $this->post('userDisease_user_id'),
-				'userDisease_disease_id'=>$this->post('userDisease_disease_id')
-			);
+		// //and if a user has only one disease then simply insert the data
+		// else
+		// {
+		// 	$data = array(
+		// 		'userDisease_user_id' => $this->post('userDisease_user_id'),
+		// 		'userDisease_disease_id'=>$this->post('userDisease_disease_id')
+		// 	);
 
-			if($this->User_model->addDisease($data)){
-			echo json_encode(['status' => TRUE, 'message' => 'User disease added successfully'], 200);
-			}
-			else
-			{
-				echo json_encode(['status' => FALSE, 'message' => 'User disease could not be added. Please try again'], 404);
-			}
-		}
+		// 	if($this->User_model->addDisease($data)){
+		// 	echo json_encode(['status' => TRUE, 'message' => 'User disease added successfully'], 200);
+		// 	}
+		// 	else
+		// 	{
+		// 		echo json_encode(['status' => FALSE, 'message' => 'User disease could not be added. Please try again'], 404);
+		// 	}
+		// }
 	}
 
 	//service used to get meals by day and disease
