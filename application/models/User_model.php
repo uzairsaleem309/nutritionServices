@@ -25,8 +25,17 @@ class User_model extends CI_Model {
 	//function used to register user's
 	public function registerUser($data)
 	{
-		if($this->db->insert('tbl_users',$data))
-			return true;
+		$query = $this->db->insert('tbl_users',$data);
+		if($query)
+		{
+			$insert_id = $this->db->insert_id();
+			//$query = $this->db->query("SELECT * FROM tbl_users WHERE user_id = $insert_id");
+			$this->db->where('user_id',$insert_id);
+			$this->db->select('*');
+			$this->db->from('tbl_users');
+			$query1 = $this->db->get();
+			return $query1->row();
+		}
 		else
 			return false;
 	}

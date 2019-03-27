@@ -72,8 +72,9 @@ class Api extends REST_Controller {
 		}
 		else
 		{
-			if($this->User_model->registerUser($data)){
-				echo json_encode(['status' => TRUE, 'message' => 'Registered successfully'], 200);
+			$result = $this->User_model->registerUser($data);
+			if($result){
+				echo json_encode(['status' => TRUE, 'message' => 'Registered successfully','data'=>$result], 200);
 			}
 			else
 			{
@@ -111,7 +112,7 @@ class Api extends REST_Controller {
 			{
 				echo json_encode(['status' => TRUE, 'message' => 'User disease could not be added. Please try again'], 404);
 			}
-		}
+		
 		// //and if a user has only one disease then simply insert the data
 		// else
 		// {
