@@ -57,7 +57,7 @@ class Api extends REST_Controller {
 	}
 
 	//this services is used for new users registeration
-	function userRegisteration_post()
+	function userRegisteration_post() 
 	{
 		$data = array(
 			'user_username'=> $this->post('user_username'),
