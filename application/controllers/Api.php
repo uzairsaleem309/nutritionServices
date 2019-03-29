@@ -37,10 +37,10 @@ class Api extends REST_Controller {
 				echo json_encode(['status' => FALSE, 'message' => 'Username and Password cannot be empty', 'data' => $result], 400);
 				exit;
 			} else if(!$this->post('user_username')) {
-				echo json_encode(['status' => FALSE, 'message' => 'Username cannot be empty', 'data' => $result], 400);
+				echo json_encode(['status' => FALSE, 'message' => 'Username cannot be empty', 'data' => $result], 200);
 				exit;
 			} else if(!$this->post('user_password')) {
-				echo json_encode(['status' => FALSE, 'message' => 'Password cannot be empty', 'data' => $result], 400);
+				echo json_encode(['status' => FALSE, 'message' => 'Password cannot be empty', 'data' => $result], 200);
 				exit;
 			}
 
@@ -51,7 +51,7 @@ class Api extends REST_Controller {
 			}
 			else {
 				$result = array();
-				echo json_encode(['status' => FALSE, 'message' => 'Username or Password is incorrect', 'data' => $result], 404);
+				echo json_encode(['status' => FALSE, 'message' => 'Username or Password is incorrect', 'data' => $result], 200);
 			}
 		}
 	}
@@ -72,13 +72,13 @@ class Api extends REST_Controller {
 		}
 		else
 		{
-			$result = $this->User_model->registerUser($data);
+                        $result = $this->User_model->registerUser($data);
 			if($result){
 				echo json_encode(['status' => TRUE, 'message' => 'Registered successfully','data'=>$result], 200);
 			}
 			else
 			{
-				echo json_encode(['status' => FALSE, 'message' => 'Registeration Failed'], 404);
+				echo json_encode(['status' => FALSE, 'message' => 'Registeration Failed'], 200);
 			}
 		}
 		
@@ -89,10 +89,9 @@ class Api extends REST_Controller {
 	{
 		$diseases = $this->post('userDisease_disease_id');
 		$i = 0;
-		// if(count($diseases) > 1)
-		// {
-		// 	//if a user has more than one disease then from the post request we are sending an array of ud_disease_id
-		// 	//then looping over it to add the records
+		
+			//if a user has more than one disease then from the post request we are sending an array of ud_disease_id
+			//then looping over it to add the records
 			foreach ($diseases as $row) {
 				$data = array(
 				'userDisease_user_id' => $this->post('userDisease_user_id'),
@@ -110,25 +109,9 @@ class Api extends REST_Controller {
 			}
 			else
 			{
-				echo json_encode(['status' => TRUE, 'message' => 'User disease could not be added. Please try again'], 404);
+				echo json_encode(['status' => TRUE, 'message' => 'User disease could not be added. Please try again'], 200);
 			}
 		
-		// //and if a user has only one disease then simply insert the data
-		// else
-		// {
-		// 	$data = array(
-		// 		'userDisease_user_id' => $this->post('userDisease_user_id'),
-		// 		'userDisease_disease_id'=>$this->post('userDisease_disease_id')
-		// 	);
-
-		// 	if($this->User_model->addDisease($data)){
-		// 	echo json_encode(['status' => TRUE, 'message' => 'User disease added successfully'], 200);
-		// 	}
-		// 	else
-		// 	{
-		// 		echo json_encode(['status' => FALSE, 'message' => 'User disease could not be added. Please try again'], 404);
-		// 	}
-		// }
 	}
 
 	//service used to get meals by day and disease
@@ -147,7 +130,7 @@ class Api extends REST_Controller {
 		else
 		{
 			$result = array();
-			$this->response(['status' => FALSE, 'message' => 'No record found', 'data' => $result], 404);
+			$this->response(['status' => FALSE, 'message' => 'No record found', 'data' => $result], 200);
 		}
 	}
 
@@ -167,7 +150,7 @@ class Api extends REST_Controller {
 		else
 		{
 			$result = array();
-			$this->response(['status' => FALSE, 'message' => 'No record found', 'data' => $result], 404);
+			$this->response(['status' => FALSE, 'message' => 'No record found', 'data' => $result], 200);
 		}
 	}
 }
