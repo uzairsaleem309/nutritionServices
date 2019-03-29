@@ -57,7 +57,7 @@ class Api extends REST_Controller {
 	}
 
 	//this services is used for new users registeration
-	function userRegisteration_post() 
+	function userRegisteration_post()
 	{
 		$data = array(
 			'user_username'=> $this->post('user_username'),
@@ -72,7 +72,21 @@ class Api extends REST_Controller {
 		}
 		else
 		{
-                        $result = $this->User_model->registerUser($data);
+			$result = $this->User_model->registerUser($data);
+			//var_dump($result->user_age);exit;
+			if($result->user_age > 5 && $result->user_age <= 10)
+			{
+				$result->user_age_group = 1;
+			}
+			else if(($result->user_age > 10 && $result->user_age <= 20))
+			{
+				$result->user_age_group = 2;
+			}
+			else if(($result->user_age > 20))
+			{
+				$result->user_age_group = 3;
+			}
+			
 			if($result){
 				echo json_encode(['status' => TRUE, 'message' => 'Registered successfully','data'=>$result], 200);
 			}
@@ -81,7 +95,6 @@ class Api extends REST_Controller {
 				echo json_encode(['status' => FALSE, 'message' => 'Registeration Failed'], 200);
 			}
 		}
-		
 	}
 
 	//this service is used to insert users diseases
