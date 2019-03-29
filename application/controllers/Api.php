@@ -125,7 +125,7 @@ class Api extends REST_Controller {
 	public function mealPlanByDay_post()
 	{
 		$data = array(
-			'user_id'=>$this->post('user_id'),
+			'user_id'=>$this->post('user_id'),  
 			'day_id'=>$this->post('day_id')
 		);
 
