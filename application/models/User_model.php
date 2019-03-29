@@ -51,6 +51,15 @@ class User_model extends CI_Model
 		else
 			return false;
 	}
+	
+	//function to add user details like height and weight
+	public function addUserDetails($data)
+	{
+		if($this->db->insert('tbl_userdetails',$data))
+			return true;
+		else
+			return false;
+	}
 
 	//function used when registering new user to check if user with same username already exist
 	public function userexist($userdata)

@@ -102,8 +102,15 @@ class Api extends REST_Controller {
 					$i++;
 				}
 			}
+			$userData = array(
+				'userDetails_user_id' => $this->post('userDisease_user_id'),
+				'userDetails_height' => $this->post('userDetails_height'),
+				'userDetails_current_weight' => $this->post('userDetails_current_weight'),
+				'userDetails_goal_weight' => $this->post('userDetails_goal_weight')
+			);
+			
 			//checking if all records are inserted
-			if($i == count($diseases))
+			if($i == count($diseases) && $this->User_model->addUserDetails($userData))
 			{
 				echo json_encode(['status' => TRUE, 'message' => 'User disease added successfully'], 200);	
 			}
