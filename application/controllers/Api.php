@@ -119,7 +119,8 @@ class Api extends REST_Controller {
 				'userDetails_user_id' => $this->post('userDisease_user_id'),
 				'userDetails_height' => $this->post('userDetails_height'),
 				'userDetails_current_weight' => $this->post('userDetails_current_weight'),
-				'userDetails_goal_weight' => $this->post('userDetails_goal_weight')
+				'userDetails_goal_weight' => $this->post('userDetails_goal_weight'),
+				'userDetails_age_group'=>  $this->post('userDetails_age_group')
 			);
 			
 			//checking if all records are inserted
