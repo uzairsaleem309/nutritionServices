@@ -74,19 +74,6 @@ class Api extends REST_Controller {
 		{
 			$result = $this->User_model->registerUser($data);
 			//var_dump($result->user_age);exit;
-			if($result->user_age > 5 && $result->user_age <= 10)
-			{
-				$result->user_age_group = 1;
-			}
-			else if(($result->user_age > 10 && $result->user_age <= 20))
-			{
-				$result->user_age_group = 2;
-			}
-			else if(($result->user_age > 20))
-			{
-				$result->user_age_group = 3;
-			}
-			
 			if($result){
 				echo json_encode(['status' => TRUE, 'message' => 'Registered successfully','data'=>$result], 200);
 			}
@@ -130,7 +117,7 @@ class Api extends REST_Controller {
 			}
 			else
 			{
-				echo json_encode(['status' => TRUE, 'message' => 'User disease could not be added. Please try again'], 200);
+				echo json_encode(['status' => FALSE, 'message' => 'User disease could not be added. Please try again'], 200);
 			}
 		
 	}
